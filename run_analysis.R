@@ -1,21 +1,33 @@
 ActLab <- read.table("UCI HAR Dataset/activity_labels.txt")
 
 trainx <- read.table("UCI HAR Dataset/train/X_train.txt", sep = "\t")
-name(trainx) <- "FeaturesVector"
+names(trainx) <- "FeaturesVector"
 trainy <- read.table("UCI HAR Dataset/train/y_train.txt", sep = " ")
-name(trainy) <- "Activity"
+names(trainy) <- "Activity"
 trainsub <- read.table("UCI HAR Dataset/train/subject_train.txt", sep = " ")
-name(trainy) <- "SubjectID"
+names(trainsub) <- "SubjectID"
 
 
 testx <- read.table("UCI HAR Dataset/test/X_test.txt", sep = "\t")
-name(testx) <- "FeaturesVector"
+names(testx) <- "FeaturesVector"
 testy <- read.table("UCI HAR Dataset/test/y_test.txt", sep = " ")
-name(testy) <- "Activity"
+names(testy) <- "Activity"
 testsub <- read.table("UCI HAR Dataset/test/subject_test.txt", sep = " ")
-name(testsub) <- "SubjectID"
+names(testsub) <- "SubjectID"
 
 
 finalx <- rbind(trainx,testx)
 finaly <- rbind(trainy,testy)
 finalsub <- rbind(trainsub,testsub)
+
+
+finaly$Activity[(finaly$Activity == 1)] <- "WALKING"
+finaly$Activity[(finaly$Activity == 2)] <- "WALKING_UPSTAIRS"
+finaly$Activity[(finaly$Activity == 3)] <- "WALKING_DOWNSTAIRS"
+finaly$Activity[(finaly$Activity == 4)] <- "SITTING"
+finaly$Activity[(finaly$Activity == 5)] <- "STANDING"
+finaly$Activity[(finaly$Activity == 6)] <- "LAYING"
+
+finaldata <- cbind(finalsub,finalx,finaly)
+
+write.csv(finaldata, "final_data.csv")
