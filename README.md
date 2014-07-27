@@ -1,0 +1,1 @@
+The script would execute properl if the data was in the "UCI HAR Dataset" folder which already in the working directory
