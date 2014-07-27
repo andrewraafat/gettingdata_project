@@ -1,1 +1,1 @@
-The script would execute properl if the data was in the "UCI HAR Dataset" folder which already in the working directory
+The script would execute properly if the data was in the "UCI HAR Dataset" folder which should be already in the working directory
